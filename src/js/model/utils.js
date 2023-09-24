@@ -16,10 +16,8 @@
 import {SummedRoll} from "./summed_roll.js";
 
 export const generateRandomNumber = (upperBound) => {
-  // TODO - Write a method that returns a number from 1 to the upperBound
-  throw new Error("Method not implemented.");
+  return Math.floor(Math.random()*upperBound) + 1;
 }
-
 
 /**
  *
@@ -27,8 +25,7 @@ export const generateRandomNumber = (upperBound) => {
  * @return number[] each dice that was rolled once.
  */
 export const rollDice = (...dice) => {
-  // TODO - Implement rolling one or more dice once and only once.
-  return []
+  return dice.map(d => d.roll());
 }
 
 export const rollSingleDiceMultipleTimes = (count, die) => {
@@ -43,8 +40,11 @@ export const rollSingleDiceMultipleTimes = (count, die) => {
  * @return number[][] an array of values
  */
 export const rollMultipleDiceMultipleTimes = (totalRolls, ...dice) => {
-  // TODO - Implement rolling multiple dice multiple times
-  return [][0]
+  const out = Array(0)
+  for (let i=0;i<totalRolls;i++) {
+    out.push(rollDice(dice))
+  }
+  return out;
 }
 
 export const rollSingleDiceMultipleTimesAndSum = (count, ...dice) => {

@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { generateRandomNumber } from "./utils";
+
 /**
  * The Die class represents the idea of a single dice (die) that may have four or more sides.
  */
@@ -22,12 +24,10 @@ export class Die {
   }
   // Should return a number of sides
   get sides() {
-    // TODO - implement the sides method
-    throw new Error("Method not implemented.");
+    return this.#Sides;
   }
   // Should return a random number between one and the total sides
   roll() {
-    // TODO - implement the roll method
-    throw new Error("Method not implemented.");
+    return generateRandomNumber(this.#Sides);
   }
 }

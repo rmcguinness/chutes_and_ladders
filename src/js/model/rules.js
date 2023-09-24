@@ -1,14 +1,14 @@
 
 // The rules file contains rules and validation functions for the game.
 
+import { SpaceType } from "./space";
+
 const LastSpaceValidator = (space) => {
-  // TODO - implement a rule that determines if the space is the last space
-  return false;
+  return space.type == SpaceType.FINISH;
 }
 
 const FirstSpaceValidator = (space) => {
-  // TODO - implement a rule that determines if a space is the first space
-  return false;
+  return space.type == SpaceType.START;
 }
 
 export default {LastSpaceValidator, FirstSpaceValidator}
