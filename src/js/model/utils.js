@@ -29,8 +29,7 @@ export const rollDice = (...dice) => {
 }
 
 export const rollSingleDiceMultipleTimes = (count, die) => {
-  // TODO - Implement rolling a single dice multiple times
-  return []
+  return Array(count).fill(die.roll());
 }
 
 /**
@@ -47,9 +46,8 @@ export const rollMultipleDiceMultipleTimes = (totalRolls, ...dice) => {
   return out;
 }
 
-export const rollSingleDiceMultipleTimesAndSum = (count, ...dice) => {
-  // TODO - Implement this method
-  return new SummedRoll([]);
+export const rollSingleDiceMultipleTimesAndSum = (count, dice) => {
+  return new SummedRoll(rollSingleDiceMultipleTimes(count), dice);
 }
 /**
  *
@@ -57,5 +55,6 @@ export const rollSingleDiceMultipleTimesAndSum = (count, ...dice) => {
  * @return SummedRoll
  */
 export const rollMultipleAndSum = (...dice) => {
-  return new SummedRoll(rollDice(dice))
+  const values = dice.reduce(d => d.roll())
+  return new SummedRoll(values);
 }
