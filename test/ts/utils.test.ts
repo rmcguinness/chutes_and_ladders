@@ -12,8 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { generateRandomNumber } from '../../src/js/model/utils'
 import '../../src/ts/model/die'
 
 test('test random number function', () => {
-  throw new Error("Method not implemented.");
+  for (let i=0;i<100;i++) {
+    const r = generateRandomNumber(2);
+    expect(r).toBeGreaterThanOrEqual(1);
+    expect(r).toBeLessThanOrEqual(2);
+  }
 })

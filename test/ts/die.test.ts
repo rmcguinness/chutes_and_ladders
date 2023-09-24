@@ -13,9 +13,32 @@
 // limitations under the License.
 
 
+import { rollMultipleAndSum, rollMultipleDiceMultipleTimes } from "../../src/js/model/utils";
 import {Die} from "../../src/ts/model/die";
 
-test('Test die class', () => {
-  throw new Error("Method not implemented.");
+test('Sprint 1, Story 2: Dice Roll Test', () => {
+  const d6 = new Die(6)
+  for (let i=0;i<100;i++) {
+    const result = d6.roll();
+    expect(result).toBeGreaterThanOrEqual(1);
+    expect(result).toBeLessThanOrEqual(d6.sides);
+  }
 })
+
+test('Sprint 1, Story 4', () => {
+  const d6 = new Die(6);
+  const d10 = new Die(10);
+  expect(d6.sides).toBe(6);
+  expect(d10.sides).toBe(10);
+  expect(d6.sides).toBeLessThan(d10.sides);
+  expect(d6.roll()).toBeTruthy();
+  expect(d10.roll()).toBeTruthy();
+})
+
+test('Sprint 1, Story 5: Roll a single dice muliple times and sum values', () => {
+  const d6 = new Die(6);
+  rollMultipleAndSum()
+})
+
+
 

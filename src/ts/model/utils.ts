@@ -15,8 +15,7 @@
 import {IDie, ISpace, ISummedRoll} from "./interfaces";
 
 const GenerateRandomNumber = (upperBound : number) : number => {
-  // TODO - implement generateRandomNumber as it WILL be used by more than the Die class.
-  throw new Error("Method not implemented.");
+  return Math.floor(Math.random()*upperBound) + 1;
 }
 
 /**

@@ -12,8 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import { generateRandomNumber } from "../../src/js/model/utils"
 
 test('test random number function', () => {
-  // TODO - Test random number generators with valid and invalid ranges
-  throw new Error("Method not implemented.");
+  for (let i = 0; i<100; i++) {
+    const r = generateRandomNumber(2);
+    expect(r).toBeLessThanOrEqual(2);
+    expect(r).toBeGreaterThanOrEqual(1);
+  }
 })
