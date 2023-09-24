@@ -14,13 +14,11 @@
 
 
 import { Die } from '../../src/js/model/die'
-import {RollDice} from "../../src/ts/model/utils.js";
 
-test('Test die class', () => {
-  // Example
+test('Test die class for a', () => {
   const d6 = new Die(6)
   for (let i=0;i<100; i++) {
-    let rollValue = RollDice(d6).pop()
+    let rollValue = d6.roll()
     expect(rollValue).toBeGreaterThanOrEqual(1);
     expect(rollValue).toBeLessThanOrEqual(d6.sides);
   }

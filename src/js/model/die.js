@@ -22,11 +22,9 @@ export class Die {
   constructor(sides) {
     this.#Sides = sides;
   }
-  // Should return a number of sides
   get sides() {
     return this.#Sides;
   }
-  // Should return a random number between one and the total sides
   roll() {
     return generateRandomNumber(this.#Sides);
   }

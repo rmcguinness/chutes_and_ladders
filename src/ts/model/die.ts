@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import { IDie } from "./interfaces";
+import utils from "./utils"
 
 export const MINIMUM_SIDES = 4;
 
@@ -24,8 +25,7 @@ export class Die implements IDie {
   }
 
   roll(): number {
-    // TODO - Implement the roll method returning a random number between 1 and the side count.
-    return 0;
+    return utils.GenerateRandomNumber(this.Sides);
   }
 
   get sides(): number {
