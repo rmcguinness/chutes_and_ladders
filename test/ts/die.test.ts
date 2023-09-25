@@ -22,8 +22,8 @@ describe('Sprint 1 (Sept 2023)', () => {
 
   //: Dice Roll Test, at least 100 times and verifying that the value is >= 1 and <= 6.
   describe('Single Die', () => {
-    const d6 = new Die(6)
-    test('High-low', () => {
+    const d6 = Die(6)
+    test('Roll correctness', () => {
       for (let i=0;i<100;i++) {
         const result = d6.roll();
         expect(result).toBeGreaterThanOrEqual(1);
@@ -46,9 +46,9 @@ describe('Sprint 1 (Sept 2023)', () => {
   
   describe('Multiple Dice', () => {
     // As a developer I will test my Die class to ensure that all methods work as expected.
-    const d4 = new Die(4);
-    const d6 = new Die(6);
-    const d10 = new Die(10);
+    const d4 = Die(4);
+    const d6 = Die(6);
+    const d10 = Die(10);
 
     test('Verfiy sides', () => {
       expect(d6.sides).toBe(6);
@@ -64,6 +64,7 @@ describe('Sprint 1 (Sept 2023)', () => {
     test('Mixed dice, rolled 100 times', () => {
       for (let i=0; i<100; i++) {
         const value = utils.RollMultipleDiceAndSum([d4, d6])
+        console.log(value)
         expect(value.rolledValues.length).toBe(2);
         expect(value.sum).toBeGreaterThanOrEqual(2);
         expect(value.sum).toBeLessThanOrEqual(10);

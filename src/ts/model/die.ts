@@ -17,19 +17,13 @@ import utils from "./utils"
 
 export const MINIMUM_SIDES = 4;
 
-export class Die implements IDie {
-  Sides : number = 0;
-
-  constructor(Sides: number) {
-    this.Sides = Sides;
+export const Die = (sides: number) : IDie => {
+  return {
+    get sides() {
+      return sides;
+    },
+    roll() : number {
+      return Math.floor(Math.random()*sides) + 1;
+    }
   }
-
-  roll(): number {
-    return utils.GenerateRandomNumber(this.Sides);
-  }
-
-  get sides(): number {
-    return this.Sides;
-  }
-
 }
