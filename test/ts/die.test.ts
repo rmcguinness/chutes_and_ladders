@@ -23,7 +23,7 @@ describe('Sprint 1 (Sept 2023)', () => {
   //: Dice Roll Test, at least 100 times and verifying that the value is >= 1 and <= 6.
   describe('Single Die', () => {
     const d6 = new Die(6)
-    test('Roll correctness', () => {
+    test('High-low', () => {
       for (let i=0;i<100;i++) {
         const result = d6.roll();
         expect(result).toBeGreaterThanOrEqual(1);

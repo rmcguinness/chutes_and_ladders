@@ -21,7 +21,7 @@ export class SummedRoll {
   #Numbers = Array(0)
   #Sum = -1
   constructor(numbers) {
-    this.#Numbers = numbers;
+    this.#Numbers = [...numbers];
     this.#Sum = numbers.reduce((p, c) => p+c, 0);
   }
 

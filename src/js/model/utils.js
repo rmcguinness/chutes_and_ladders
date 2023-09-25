@@ -29,7 +29,7 @@ export const rollDice = (...dice) => {
 }
 
 export const rollSingleDiceMultipleTimes = (count, die) => {
-  return Array(count).fill(die.roll());
+  return Array(count).fill(die.roll())
 }
 
 /**
@@ -47,7 +47,11 @@ export const rollMultipleDiceMultipleTimes = (totalRolls, ...dice) => {
 }
 
 export const rollSingleDiceMultipleTimesAndSum = (count, dice) => {
-  return new SummedRoll(rollSingleDiceMultipleTimes(count), dice);
+  const out = Array(0);
+  for (let i = 0; i<count; i++) {
+    out.push(dice.roll());
+  }
+  return new SummedRoll(out);
 }
 /**
  *
