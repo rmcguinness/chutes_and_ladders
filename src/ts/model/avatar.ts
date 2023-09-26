@@ -14,7 +14,7 @@
 
 import {IAvatar, ISpace} from "./interfaces";
 
-export class Avatar implements IAvatar {
+class AvatarImpl implements IAvatar {
     Location : ISpace;
     Name : string;
 
@@ -33,5 +33,8 @@ export class Avatar implements IAvatar {
     get name(): string {
         return this.Name;
     }
+}
 
+export const Avatar = (name: string) : IAvatar => {
+    return new AvatarImpl(name);
 }

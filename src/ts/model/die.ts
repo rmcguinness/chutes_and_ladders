@@ -15,15 +15,9 @@
 import { IDie } from "./interfaces";
 import utils from "./utils"
 
-export const MINIMUM_SIDES = 4;
-
 export const Die = (sides: number) : IDie => {
   return {
-    get sides() {
-      return sides;
-    },
-    roll() : number {
-      return Math.floor(Math.random()*sides) + 1;
-    }
+    get sides() { return sides },
+    roll: () => utils.GenerateRandomNumber(sides)
   }
 }

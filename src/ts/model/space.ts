@@ -15,7 +15,7 @@
 import {IAvatar, IPlayer, ISpace, SpaceType} from "./interfaces";
 
 
-export class Space implements ISpace {
+class SpaceImpl implements ISpace {
   Value : string;
   Type : SpaceType;
   Next : ISpace | null = null;
@@ -62,4 +62,8 @@ export class Space implements ISpace {
   get value(): string {
     return this.Value;
   }
+}
+
+export const Space = (value: string, type: SpaceType) : ISpace => {
+  return new SpaceImpl(value, type);
 }

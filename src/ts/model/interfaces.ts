@@ -80,8 +80,8 @@ export interface ISpace {
 }
 
 export interface IBoard {
-  spaces() : Array<ISpace>
-  setup() : void
+  get spaces() : Array<ISpace>
+  reset(callback: (board: IBoard) => void) : void
   display() : string
 }
 
