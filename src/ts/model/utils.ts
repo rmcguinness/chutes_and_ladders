@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import {IDie, ISpace, ISummedRoll} from "./interfaces";
+import {IDie, ISummedRoll} from "./interfaces";
 
-const GenerateRandomNumber = (upperBound : number) : number => {
+export const GenerateRandomNumber = (upperBound : number) : number => {
   return Math.floor(Math.random()*upperBound) + 1;
 }
 
@@ -23,13 +23,47 @@ const GenerateRandomNumber = (upperBound : number) : number => {
  * @param dice the dice to roll
  * @return number[] each dice that was rolled once.
  */
-const RollDice = (dice : Array<IDie>) : Array<number> => {
+export const RollDice = (dice: Array<IDie>) : Array<number> => {
   return dice.map(d => d.roll());
 }
 
-
-const RollSingleDiceMultipleTimes = (count: number, die: IDie) : Array<number> => {
+/**
+ * 
+ * @param count 
+ * @param die 
+ * @returns 
+ */
+export const RollSingleDiceMultipleTimes = (count: number, die: IDie) : Array<number> => {
   return Array(count).fill(die.roll());
+}
+
+
+
+/**
+ *
+ * @param count number of roles
+ * @param die single dice
+ */
+export const RollSingleDiceMultipleTimesAndSum = (count: number, die: IDie) : ISummedRoll => {
+  const values = Array(count).fill(die.roll())
+  return {
+    rolledValues: values,
+    sum: values.reduce((p, i) => p+i, 0)
+  } as ISummedRoll
+}
+
+
+/**
+ *
+ * @param dice
+ * @return SummedRoll
+ */
+export const RollMultipleDiceAndSum = (dice: Array<IDie>) : ISummedRoll => {
+  const values = dice.map(d => d.roll());
+  return {
+    rolledValues: values,
+    sum: values.reduce((p, i) => p+i, 0)
+  } as ISummedRoll
 }
 
 /**
@@ -38,7 +72,7 @@ const RollSingleDiceMultipleTimes = (count: number, die: IDie) : Array<number> =
  * @param dice one or more dice
  * @return number[][] an array of values
  */
-const RollMultipleDiceMultipleTimes = (totalRolls : number, ...dice : Array<IDie>) : Array<Array<number>> => {
+export const RollMultipleDiceMultipleTimes = (totalRolls : number, dice : Array<IDie>) : Array<Array<number>> => {
   const out = Array<Array<number>>(0)
   for (let i = 0; i<totalRolls; i++) {
     out.push(RollDice(dice));
@@ -46,31 +80,5 @@ const RollMultipleDiceMultipleTimes = (totalRolls : number, ...dice : Array<IDie
   return out;
 }
 
-/**
- *
- * @param count number of roles
- * @param die single dice
- */
-const RollSingleDiceMultipleTimesAndSum = (count: number, die: IDie) : ISummedRoll => {
-  const values = Array(count).fill(die.roll())
-  return {
-    rolledValues: values,
-    sum: values.reduce((p, i) => p+i, 0)
-  } as ISummedRoll
-}
 
-/**
- *
- * @param dice
- * @return SummedRoll
- */
-const RollMultipleDiceAndSum = (dice: Array<IDie>) : ISummedRoll => {
-  const values = dice.map(d => d.roll());
-  return {
-    rolledValues: values,
-    sum: values.reduce((p, i) => p+i, 0)
-  } as ISummedRoll
-}
-
-
-export default { GenerateRandomNumber, RollDice, RollSingleDiceMultipleTimes,  RollSingleDiceMultipleTimesAndSum, RollMultipleDiceMultipleTimes, RollMultipleDiceAndSum }
+export default {GenerateRandomNumber, RollDice, RollSingleDiceMultipleTimes, RollSingleDiceMultipleTimesAndSum, RollMultipleDiceAndSum, RollMultipleDiceMultipleTimes}

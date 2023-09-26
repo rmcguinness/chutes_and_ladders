@@ -28,8 +28,28 @@ export const rollDice = (...dice) => {
   return dice.map(d => d.roll());
 }
 
+/**
+ * 
+ * @param {number} count 
+ * @param {Die} die 
+ * @returns 
+ */
 export const rollSingleDiceMultipleTimes = (count, die) => {
   return Array(count).fill(die.roll())
+}
+
+/**
+ * 
+ * @param {number} count 
+ * @param {Die[]} dice 
+ * @returns 
+ */
+export const rollSingleDiceMultipleTimesAndSum = (count, dice) => {
+  const out = Array(0);
+  for (let i = 0; i<count; i++) {
+    out.push(dice.roll());
+  }
+  return new SummedRoll(out);
 }
 
 /**
@@ -38,27 +58,20 @@ export const rollSingleDiceMultipleTimes = (count, die) => {
  * @param dice one or more dice
  * @return number[][] an array of values
  */
-export const rollMultipleDiceMultipleTimes = (totalRolls, ...dice) => {
+export const rollMultipleDiceMultipleTimes = (totalRolls, dice) => {
   const out = Array(0)
   for (let i=0;i<totalRolls;i++) {
-    out.push(rollDice(dice))
+    out.push(rollDice(...dice))
   }
   return out;
 }
 
-export const rollSingleDiceMultipleTimesAndSum = (count, dice) => {
-  const out = Array(0);
-  for (let i = 0; i<count; i++) {
-    out.push(dice.roll());
-  }
-  return new SummedRoll(out);
-}
 /**
  *
- * @param dice
+ * @param {Die[]} dice
  * @return SummedRoll
  */
-export const rollMultipleAndSum = (...dice) => {
-  const values = dice.reduce(d => d.roll())
+export const rollMultipleDiceAndSum = (dice) => {
+  const values = dice.map(d => d.roll())
   return new SummedRoll(values);
 }

@@ -12,13 +12,63 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { generateRandomNumber } from '../../src/js/model/utils'
-import '../../src/ts/model/die'
+import utils from '../../src/ts/model/utils'
+import { Die } from '../../src/ts/model/die'
 
-test('test random number function', () => {
-  for (let i=0;i<100;i++) {
-    const r = generateRandomNumber(2);
-    expect(r).toBeGreaterThanOrEqual(1);
-    expect(r).toBeLessThanOrEqual(2);
-  }
+describe('Test Utils', () => {
+  const D4 = Die(4);
+  const D6 = Die(6);
+
+  test('test random number function', () => {
+    for (let i=0;i<100;i++) {
+      const r = utils.GenerateRandomNumber(2);
+      expect(r).toBeGreaterThanOrEqual(1);
+      expect(r).toBeLessThanOrEqual(2);
+    }
+  })
+
+  describe('Single die', () => {
+    test('Roll dice', () => {
+      const r = utils.RollDice(Array.of(D6))
+      expect(r).toBeTruthy()
+      expect(r.length).toBe(1);
+    })
+
+    test('Roll multiple times', () => {
+      const r = utils.RollSingleDiceMultipleTimes(2, D6)
+      expect(r).toBeTruthy()
+      expect(r.length).toBe(2)
+      expect(r[0]).toBeTruthy()
+    })
+
+    test('Roll and sum', () => {
+      const r = utils.RollSingleDiceMultipleTimesAndSum(2, D6)
+      expect(r).toBeTruthy()
+      expect(r.rolledValues).toBeTruthy()
+      expect(r.sum).toBeTruthy()
+      expect(r.rolledValues.length).toBe(2)
+    })
+  })
+
+  describe('Test miltiple', () => {
+
+    test('Multiple and sum', () => {
+      const r = utils.RollMultipleDiceAndSum(Array.of(D4, D6))
+      expect(r).toBeTruthy()
+      expect(r.rolledValues).toBeTruthy()
+      expect(r.rolledValues.length).toBe(2)
+      expect(r.sum).toBeTruthy()
+    })
+
+    test('Multi roll, multi sum', () => {
+      const r = utils.RollMultipleDiceMultipleTimes(2, Array.of(D4, D6))
+      expect(r).toBeTruthy()
+      expect(r.length).toBe(2)
+      expect(r[0].length).toBe(2)
+    })
+  })
+
+  
+
 })
+
