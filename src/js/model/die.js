@@ -14,18 +14,10 @@
 
 import { generateRandomNumber } from "./utils";
 
-/**
- * The Die class represents the idea of a single dice (die) that may have four or more sides.
- */
-export class Die {
-  #Sides = -1;
-  constructor(sides) {
-    this.#Sides = sides;
-  }
-  get sides() {
-    return this.#Sides;
-  }
-  roll() {
-    return generateRandomNumber(this.#Sides);
-  }
+
+export function Die(sides) {
+  if (!(this instanceof Die)) return new Die(sides)
+  this.sides = sides;
+  this.roll = () => generateRandomNumber(this.sides)
 }
+

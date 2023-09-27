@@ -96,8 +96,14 @@ export interface IGame {
 }
 
 export interface IDie {
-  get sides() : number;
+  Sides : number;
+  sides() : number;
   roll() : number;
+}
+
+export interface IDieConstuctor {
+  new (Sides: number) : IDie
+  (Sides: number) : IDie
 }
 
 export interface ISummedRoll {

@@ -12,12 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { IDie } from "./interfaces";
+import { IDie, IDieConstuctor } from "./interfaces";
 import utils from "./utils"
 
-export const Die = (sides: number) : IDie => {
-  return {
-    get sides() { return sides },
-    roll: () => utils.GenerateRandomNumber(sides)
-  }
-}
+export const Die = function Die(this: IDie, Sides: number) {
+  if(!(this instanceof Die)) return new (Die as any)(Sides)
+  this.sides = () => Sides;
+  this.roll = () => utils.GenerateRandomNumber(this.sides())
+} as unknown as IDieConstuctor

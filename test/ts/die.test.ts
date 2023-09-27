@@ -13,7 +13,7 @@
 // limitations under the License.
 
 
-import {Die} from "../../src/ts/model/die";
+import { Die } from "../../src/ts/model/die";
 import { ISummedRoll } from "../../src/ts/model/interfaces";
 import utils from "../../src/ts/model/utils";
 
@@ -27,7 +27,7 @@ describe('Sprint 1 (Sept 2023)', () => {
       for (let i=0;i<100;i++) {
         const result = d6.roll();
         expect(result).toBeGreaterThanOrEqual(1);
-        expect(result).toBeLessThanOrEqual(d6.sides);
+        expect(result).toBeLessThanOrEqual(d6.sides());
       }
     })
 
@@ -37,23 +37,21 @@ describe('Sprint 1 (Sept 2023)', () => {
         var summed = utils.RollSingleDiceMultipleTimesAndSum(i, d6)
         expect(summed.rolledValues.length).toEqual(i)
         expect(summed.sum).toBeGreaterThanOrEqual(i)
-        expect(summed.sum).toBeLessThanOrEqual(i*d6.sides);
+        expect(summed.sum).toBeLessThanOrEqual(i*d6.sides());
       }
     })
   })
 
-  
-  
   describe('Multiple Dice', () => {
     // As a developer I will test my Die class to ensure that all methods work as expected.
     const d4 = Die(4);
     const d6 = Die(6);
-    const d10 = Die(10);
+    const d10 = new Die(10);
 
     test('Verfiy sides', () => {
-      expect(d6.sides).toBe(6);
-      expect(d10.sides).toBe(10);
-      expect(d6.sides).toBeLessThan(d10.sides);
+      expect(d6.sides()).toBe(6);
+      expect(d10.sides()).toBe(10);
+      expect(d6.sides()).toBeLessThan(d10.sides());
     })
 
     test('Verify roll method', () => {

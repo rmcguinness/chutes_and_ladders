@@ -18,9 +18,8 @@ import { rollSingleDiceMultipleTimesAndSum, rollSingleDiceMultipleTimes } from '
 import {describe, expect, test} from '@jest/globals';
 
 describe('Iteration 1 test', () => {
-  describe('Single die', () => {
-    const d6 = new Die(6);
-    const minLoops = 10;
+  describe('Roll one dice, 100 times', () => {
+    const d6 = Die(6);
     const maxLoops = 100;
 
     test('High-Low', () => {
@@ -31,7 +30,7 @@ describe('Iteration 1 test', () => {
       }
     });
 
-    test('', () => {
+    test('Roll multiple times', () => {
       const values = rollSingleDiceMultipleTimes(3, d6);
       expect(values).toBeTruthy()
       expect(values.length).toBe(3)
